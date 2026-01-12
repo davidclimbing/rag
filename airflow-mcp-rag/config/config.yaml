@@ -1,0 +1,40 @@
+# config/config.yaml
+embeddings:
+  provider: google  # google로 변경
+  model: models/embedding-001  # Gemini 임베딩 모델
+  dimension: 768  # Gemini 임베딩 차원
+
+text_splitter:
+  chunk_size: 1000
+  chunk_overlap: 200
+  separators:
+    - "\n\n"
+    - "\n"
+    - " "
+    - ""
+
+vector_store:
+  type: faiss
+  path: src/data/processed/airflow_vectors
+  index_type: IndexFlatL2
+
+retrieval:
+  k: 5
+  score_threshold: 0.7
+  search_type: similarity
+
+llm:
+  provider: google  # google로 변경
+  model: gemini-2.5-flash  # 무료 모델
+  temperature: 0
+  max_tokens: 2048
+
+airflow_docs:
+  base_url: https://airflow.apache.org/docs/
+  version: apache-airflow/stable
+  sections:
+    - concepts
+    - tutorial
+    - howto
+    - core-concepts
+    - best-practices
